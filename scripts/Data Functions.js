@@ -1,6 +1,5 @@
 import { scoreCard } from "./Class Definitions.js";
-import { eplSetData, mlbSetData, nbaSetData, NCAABSetData, nhlSetData } from "./NBA.js";
-import { nflSetData } from "./NFL.js";
+import { eplSetData, mlbSetData, nbaSetData, NCAABSetData, nhlSetData, nflSetData } from "./Leagues.js";
 
 export function fetchInfo(url) {
     let promise = fetch(url)
@@ -42,9 +41,9 @@ export function fetchInfo(url) {
                 } else if (url === "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard") {
                     card.league = 'NCAAB';
                     NCAABSetData(card, event);
-                }else { 
+                } else {
                     card.league = 'EPL';
-                    eplSetData(card,event);
+                    eplSetData(card, event);
                 }
 
                 if (event.status.type.state == 'pre') {
@@ -128,30 +127,6 @@ function updateInfo(game, event, updatecard) {
             game.details = event.competitions[0].status.type.shortDetail;
         } catch { }
 
-    } else if (event.status.type.state == "in") {
-        game.home.linescore = event.competitions[0].competitors[0].linescores;
-        game.away.linescore = event.competitions[0].competitors[1].linescores;
-        game.status = event.status.type.state;
-        game.details = event.competitions[0].status.type.shortDetail;
-        game.home.score = event.competitions[0].competitors[0].score;
-        game.away.score = event.competitions[0].competitors[1].score;
-        try {
-            game.lastPlayImg = event.competitions[0].situation.lastPlay.athletesInvolved[0].headshot;
-            game.lastPlayText = event.competitions[0].situation.lastPlay.text;
-        } catch (error) { }
-        if (game.league === 'NFL' || game.league === 'CFL') {
-            nflSetData(game, event)
-        } else if (game.league === 'NBA'){
-            nbaSetData(game, event);
-        } else if (game.league === 'NHL'){
-            nhlSetData(game,event); 
-        } else if (game.league === 'MLB') { 
-            mlbSetData(game,event); 
-        } else if (game.league === 'EPL'){
-            eplSetData(game, event); 
-        } else if (game.league === 'NCAAB'){
-            NCAABSetData(game,event); 
-        }
     } else {
         game.home.linescore = event.competitions[0].competitors[0].linescores;
         game.away.linescore = event.competitions[0].competitors[1].linescores;
@@ -159,22 +134,28 @@ function updateInfo(game, event, updatecard) {
         game.details = event.competitions[0].status.type.shortDetail;
         game.home.score = event.competitions[0].competitors[0].score;
         game.away.score = event.competitions[0].competitors[1].score;
-        game.home.record = event.competitions[0].competitors[0].records[0].summary;
-        game.away.record = event.competitions[0].competitors[0].records[0].summary;
         if (game.league === 'NFL' || game.league === 'CFL') {
             nflSetData(game, event)
-        } else if (game.league === 'NBA'){
+        } else if (game.league === 'NBA') {
             nbaSetData(game, event);
-        } else if (game.league === 'NHL'){
-            nhlSetData(game,event); 
-        } else if (game.league === 'MLB') { 
-            mlbSetData(game,event); 
-        } else if (game.league === 'EPL'){
-            eplSetData(game, event); 
-        } else if (game.league === 'NCAAB'){
-            NCAABSetData(game,event); 
+        } else if (game.league === 'NHL') {
+            nhlSetData(game, event);
+        } else if (game.league === 'MLB') {
+            mlbSetData(game, event);
+        } else if (game.league === 'EPL') {
+            eplSetData(game, event);
+        } else if (game.league === 'NCAAB') {
+            NCAABSetData(game, event);
         }
-
+        if (event.status.type.state == "in") {
+            try {
+                game.lastPlayImg = event.competitions[0].situation.lastPlay.athletesInvolved[0].headshot;
+                game.lastPlayText = event.competitions[0].situation.lastPlay.text;
+            } catch (error) { }
+        } else {
+            game.home.record = event.competitions[0].competitors[0].records[0].summary;
+            game.away.record = event.competitions[0].competitors[0].records[0].summary;
+        }  
     }
     if (updatecard) {
         game.updateScoreCard();
