@@ -1,0 +1,98 @@
+/* General Styles*/
+body,html,div,header,p{
+    margin: 0;
+    padding: 0;
+}
+body{ 
+    background-image: url(backgrounds/7.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.main{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+/* Header Styles*/ 
+header{
+    height: 10vh;
+    min-height: 60px;
+    background-color: rgba(255, 255, 255,0.02);
+}
+.bookmarks{
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.bookmarks img, .bookmarks a{
+    height: 8vh; 
+
+}
+
+/* Styles for the sports Data*/
+.sportsData{
+    display: flex;
+    height: 60vh;
+    min-height: 445px;
+}
+.gameCards{
+    display: grid;
+    grid-template-columns: repeat(3, max(320px, 23.5vw));
+    gap: 20px 20px;
+    grid-auto-rows: max(130px,16vh);
+    overflow: scroll;
+    padding:  0 1.5vh;
+    box-sizing: border-box;
+    height: max(440px,calc(48vh + 50px));
+}
+
+.gameCards::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+/* Scorecards Styles */ 
+.scorecard{
+    background-color: rgba(255, 255, 255, 0.35);
+    border: 2px solid black; 
+    border-radius: 25px;
+    /* stuff that is needed*/ 
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.1em;
+    height: 100%;
+}
+
+.team{ 
+    width: 25%;
+    height: 100%;
+    align-items: center;
+    font-weight: bold; 
+}
+
+.team img{ 
+    height: 10vh;
+}
+.center, .team{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+}
+.score{ 
+    font-size: 2.45rem;
+    padding-bottom: 2vh;
+}
+
+.center a{ 
+    text-decoration: none;
+    color: black;
+}
+
+.center a:hover{
+    /*text-decoration: underline;*/
+    color: white;
+}

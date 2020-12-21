@@ -1,0 +1,13 @@
+{
+    "name": "Testing",
+    "version": "1.0",
+    "description": "The Ultimate Gaming Experience",
+    "permissions": ["storage","alarms"],
+    "chrome_url_overrides" : {
+      "newtab": "new_tab.html"
+    },
+    "background" : {
+      "page" : "background.html"
+    },
+    "manifest_version": 2
+  }

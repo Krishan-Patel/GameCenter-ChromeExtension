@@ -1,0 +1,81 @@
+.backpage{ 
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 2px solid black; 
+    border-radius: 25px;
+    /* stuff that is needed*/ 
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    text-align: center;
+    padding: 10px 10px;
+    box-sizing: border-box;
+}
+.backpage::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+.top, .middle{ 
+    display: flex; 
+    align-items: center;
+}
+
+.middle table{
+    width: 50%;
+}
+
+
+.leadersDiv { 
+    display: flex;
+    justify-content: space-between;
+}
+.lastPlay{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 45%;
+    padding-left: 5%;
+    box-sizing: border-box;
+}
+.headline{
+    width: 65%;
+}
+.odds{
+    width: 35%;
+}
+.backpage img{
+    height: 4vh;
+    width: 4vh;
+}
+
+.leader{
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: space-around;
+    width: 45%;
+}
+.leader img{
+    width: 9vh;
+    height: 6vh;
+    padding-bottom: 10px;
+}
+thead td { 
+    font-weight: bold;
+}
+
+
+
+.gameLeaders{
+    display: grid;
+    grid-template-rows: 50px;
+    grid-template-columns: 40% 60%;
+    gap: 10px;
+}
+.gameLeaders img { 
+    width: 9vh;
+    height: 6vh;
+}
+.gameLeaders p , .leader p  { 
+    font-size: 1.8vh;
+}

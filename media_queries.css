@@ -1,0 +1,11 @@
+
+@media (max-width: 1010px){
+    .gameCards{
+        grid-template-columns: repeat(2,320px);
+    }
+}
+@media (max-width: 670px){
+    .gameCards{
+        grid-template-columns: 320px;
+    }
+}
