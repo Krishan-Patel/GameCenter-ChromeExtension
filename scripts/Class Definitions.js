@@ -1,15 +1,15 @@
 export const dataURLs = [
-    //"https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
-    //"http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
+    "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+    "http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
     "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
-    //"http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+    "http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
     "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
     "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
-    //"http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
+    "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
 ];
 
 export class scoreCard {
-    constructor(homeName, homeLogo, homeRecord, homeScore, awayName, awayLogo, awayRecord, awayScore, gameId, detail, status, link) {
+    constructor(homeName, homeLogo, homeRecord, homeScore, awayName, awayLogo, awayRecord, awayScore, gameId, detail, status, link, date) {
         this.home = new Team(homeName, homeLogo, homeRecord, homeScore, null);
         this.away = new Team(awayName, awayLogo, awayRecord, awayScore, null);
         this.gameId = gameId;
@@ -17,6 +17,7 @@ export class scoreCard {
         this.details = detail;
         this.gameLeaders = {};
         this.link = link;
+        this.date = date; 
     }
 
     updateScoreCard = () => {
@@ -276,7 +277,9 @@ export function loadExisting(scorecard) {
         scorecard.away.score,
         scorecard.gameId,
         scorecard.details,
-        scorecard.status)
+        scorecard.status,
+        scorecard.link, 
+        scorecard.date)
     card.home.leadersImg = scorecard.home.leadersImg;
     card.home.leadersStats = scorecard.home.leadersStats;
     card.home.linescore = scorecard.home.linescore;
@@ -288,7 +291,6 @@ export function loadExisting(scorecard) {
     card.overUnder = scorecard.overUnder;
     card.league = scorecard.league;
     card.headline = scorecard.headline;
-    card.link = scorecard.link;
     return card
 
 }

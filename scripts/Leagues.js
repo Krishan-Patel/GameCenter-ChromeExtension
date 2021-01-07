@@ -65,11 +65,14 @@ export function NCAABSetData(card, event) {
 }
 
 export function eplSetData(card, event) {
-    //card.home.leadersImg = event.competitions[0].competitors[0].leaders[0].leaders[0].athlete.headshot;
+    try { //card.home.leadersImg = event.competitions[0].competitors[0].leaders[0].leaders[0].athlete.headshot;
     card.home.leadersStats = event.competitions[0].competitors[0].leaders[0].leaders[0].shortDisplayValue;
     //card.away.leadersImg = event.competitions[0].competitors[1].leaders[0].leaders[0].athlete.headshot;
     card.away.leadersStats = event.competitions[0].competitors[1].leaders[0].leaders[0].shortDisplayValue;
-    event.competitions[0].headlines[0].shortLinkText;
+    }catch{}
+    try { 
+        card.headline = event.competitions[0].headlines[0].shortLinkText;
+    }catch{}
 }
 
 

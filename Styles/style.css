@@ -4,7 +4,7 @@ body,html,div,header,p{
     padding: 0;
 }
 body{ 
-    background-image: url(backgrounds/7.jpg);
+    background-image: url(/backgrounds/7.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
