@@ -49,9 +49,10 @@ submit.addEventListener("click", (e) => {
       "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
     );
   }
-  console.log(leagues);
+  if (leagues.length > 0) {
   chrome.storage.sync.set({leagues : leagues});
   chrome.storage.local.clear();
+  }
 
   if (url.value) {
     console.log(url.value);
