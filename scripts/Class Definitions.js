@@ -1,13 +1,3 @@
-export const dataURLs = [
-    "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard"
-];
-
 export class scoreCard {
     constructor(homeName, homeLogo, homeRecord, homeScore, awayName, awayLogo, awayRecord, awayScore, gameId, detail, status, link, date) {
         this.home = new Team(homeName, homeLogo, homeRecord, homeScore, null);
@@ -79,6 +69,8 @@ export class scoreCard {
             this.scoreCard.style.display = 'flex';
         }
     }
+
+
     createCard() {
         this.scoreCard = document.createElement('div');
         this.scoreCard.setAttribute('class', 'scorecard');
@@ -152,6 +144,7 @@ export class scoreCard {
         const lastPlayContainer = document.createElement('div');
         lastPlayContainer.setAttribute('class', 'lastPlay');
         this.lastPlayImage = document.createElement('img');
+        this.lastPlayImage.setAttribute('src', '/');
         this.lastPlayP = document.createElement('p');
         lastPlayContainer.appendChild(this.lastPlayImage);
         lastPlayContainer.appendChild(this.lastPlayP);
@@ -170,7 +163,7 @@ export class scoreCard {
             this.rushStats = document.createElement('p');
             this.rushStats.textContent = this.gameLeaders.rushingLeaderTxt;
             this.recievingLeader = document.createElement('img');
-            this.recievingLeader.setAttribute('src', this.gameLeaders.recievingLeaderImg);
+            this.recievingLeader.setAttribute('src', this.gameLeaders.recievingLeaderImg ? this.gameLeaders.recievingLeaderImg : '/' );
             this.recievingStats = document.createElement('p');
             this.recievingStats.textContent = this.gameLeaders.recieveingLeaderTxt;
             gameLeaders.appendChild(this.passingLeader);
@@ -218,6 +211,7 @@ export class scoreCard {
         this.away.updateLinescore(this.awayRow, this.header);
     }
 }
+
 
 class Team {
     constructor(name, logo, record, score, linescore) {
