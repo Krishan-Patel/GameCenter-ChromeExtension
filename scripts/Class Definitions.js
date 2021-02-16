@@ -1,3 +1,5 @@
+// scoreCard class defines a class based template for all gamecard objects containing all the important information about each game 
+//   displayed to the user including the score, status, leaders etc. 
 export class scoreCard {
     constructor(homeName, homeLogo, homeRecord, homeScore, awayName, awayLogo, awayRecord, awayScore, gameId, detail, status, link, date) {
         this.home = new Team(homeName, homeLogo, homeRecord, homeScore, null);
@@ -10,6 +12,7 @@ export class scoreCard {
         this.date = date; 
     }
 
+    // updateScoreCard() updates the UI with updated game information to always desplay the most current data.
     updateScoreCard = () => {
         this.score.textContent = `${this.home.score} - ${this.away.score}`;
         this.gamedetail.textContent = this.details;
@@ -60,6 +63,8 @@ export class scoreCard {
 
 
     }
+
+    // flip() Changes the UI by swapping the display for a particular gamecard to the backpage when a user clicks on it. 
     flip = () => {
         if (this.backpage.style.display === 'none') {
             this.scoreCard.style.display = 'none';
@@ -70,7 +75,8 @@ export class scoreCard {
         }
     }
 
-
+    // createCard() uses the DOM api to create the scorecard and all the necessary components to display 
+    //   the game information on the UI and applies any necessary styles. 
     createCard() {
         this.scoreCard = document.createElement('div');
         this.scoreCard.setAttribute('class', 'scorecard');
@@ -212,7 +218,8 @@ export class scoreCard {
     }
 }
 
-
+// Team class creates a template for team objects that store team specific data inside the ScoreCard Class 
+//   team objects contain a teams: name, logo, record, score, linescore and leaders. 
 class Team {
     constructor(name, logo, record, score, linescore) {
         this.name = name;
@@ -222,6 +229,8 @@ class Team {
         this.linescore = linescore;
 
     }
+
+    // constructTeamDiv() uses the DOM api to create the team component of the scorecard UI. 
     construcutTeamDiv() {
         const teamDiv = document.createElement('div');
         teamDiv.setAttribute('class', 'team');
@@ -238,6 +247,8 @@ class Team {
         teamDiv.appendChild(record);
         return teamDiv;
     }
+
+    // updateLinescore(tableRow, tableHeader) updates the linescore for TableHeader by adding or changing the value in tableRow
     updateLinescore(tableRow, TableHeader) {
         if (!this.linescore) {
             return;
@@ -260,6 +271,10 @@ class Team {
 }
 
 
+// loadExisting(scorecard) uses scorecard to create a scorecard object and initializes any necessary 
+//   fields of the object needed for UI. 
+// Note: When the scorecard information is cached inside the Chrome Storage API the methods aren't stored so 
+//       the scorecard is recreated each time the information is loaded in from the cache. 
 export function loadExisting(scorecard) {
     let card = new scoreCard(scorecard.home.name,
         scorecard.home.logo,
@@ -285,6 +300,5 @@ export function loadExisting(scorecard) {
     card.overUnder = scorecard.overUnder;
     card.league = scorecard.league;
     card.headline = scorecard.headline;
-    return card
-
+    return card;
 }

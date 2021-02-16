@@ -3,6 +3,7 @@ import { fetchInfo, updateData, hideUndefined } from "./Data Functions.js";
 
 const gameCards = document.querySelector(".gameCards");
 let gamesArray = [];
+
 // Loads in GameCards from chrome extension storage cache and updates the display with GameCards
 //   if cache is unavaliable then fetches data and stores it in cache.
 window.addEventListener("load", () => {
@@ -59,6 +60,7 @@ window.addEventListener("load", () => {
 });
 let id;
 
+// update() updates the game information for all relvent scorecards by calling updateData() with gameArray. 
 function update() {
   console.log("refreshing");
   id = setTimeout(function liveRefresh() {
@@ -71,6 +73,7 @@ function update() {
   }, 5000);
 }
 window.addEventListener("blur", stopUpdates);
+
 
 // stopUpdates() pauses GameCard updates when window is inactive (user clicks away)
 function stopUpdates() {

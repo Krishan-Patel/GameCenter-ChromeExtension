@@ -1,4 +1,4 @@
-
+// function for setting specific information within a NBA scorecard object. 
 export function nbaSetData(card, event) {
     try {
         card.home.leadersImg =   event.competitions[0].competitors[0].leaders[3].leaders[0].athlete.headshot;
@@ -14,6 +14,7 @@ export function nbaSetData(card, event) {
     }
 }
 
+// function for setting specific information within a NFL and college Footbal scorecard object. 
 export function nflSetData(card, event) {
     try {
         card.gameLeaders.passLeaderImg = event.competitions[0].leaders[0].leaders[0].athlete.headshot;
@@ -26,13 +27,15 @@ export function nflSetData(card, event) {
 
         try {
             card.headline = event.competitions[0].situation.downDistanceText;
-        } catch (error) { }
+        } catch (error) {
+            card.headline = event.competitions[0].notes[0].headline;
+         }
     }
 
 
-
+// function for setting specific information within a NHL scorecard object. 
 export function nhlSetData(card, event) {
-    try {
+    try{
         card.home.leadersImg = event.competitions[0].competitors[0].leaders[2].leaders[0].athlete.headshot;
         card.home.leadersStats = event.competitions[0].competitors[0].leaders[2].leaders[0].displayValue;
     } catch { }
@@ -46,6 +49,7 @@ export function nhlSetData(card, event) {
 
 }
 
+// function for setting specific information within a MLB scorecard object. 
 export function mlbSetData(card, event) {
     try {
         card.home.leadersImg = event.competitions[0].competitors[0].leaders[4].leaders[0].athlete.headshot;
@@ -55,6 +59,7 @@ export function mlbSetData(card, event) {
     } catch (error) { console.log(error) }
 }
 
+// function for setting specific information within a College Basketball scorecard object. 
 export function NCAABSetData(card, event) {
     try {
         card.home.leadersImg = event.competitions[0].competitors[0].leaders[0].leaders[0].athlete.headshot;
@@ -64,10 +69,10 @@ export function NCAABSetData(card, event) {
     } catch (error) { console.log(error) }
 }
 
+// function for setting specific information within a Premier League scorecard object. 
 export function eplSetData(card, event) {
-    try { //card.home.leadersImg = event.competitions[0].competitors[0].leaders[0].leaders[0].athlete.headshot;
+    try { 
     card.home.leadersStats = event.competitions[0].competitors[0].leaders[0].leaders[0].shortDisplayValue;
-    //card.away.leadersImg = event.competitions[0].competitors[1].leaders[0].leaders[0].athlete.headshot;
     card.away.leadersStats = event.competitions[0].competitors[1].leaders[0].leaders[0].shortDisplayValue;
     }catch{}
     try { 

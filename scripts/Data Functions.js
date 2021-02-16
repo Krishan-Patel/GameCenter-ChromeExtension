@@ -190,7 +190,7 @@ export function updateData(gamesArray, updatecard) {
           if (updatecard) {
             hideUndefined();
           }
-          //location.reload();
+          location.reload();
         }
         });
       });

@@ -9,6 +9,7 @@ const mlb = document.getElementById("mlb");
 const ncaab = document.getElementById("ncaab");
 const url = document.getElementById("background-url");
 
+// handles the submission of the settings form and updates the settings for the user accordingly. 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
   console.log(e);
@@ -61,7 +62,7 @@ submit.addEventListener("click", (e) => {
 });
 
 
-
+// handles the event for when the user wants to reset to the default settings. 
 document.getElementById("reset").addEventListener("click", (e) => {
     e.preventDefault(); 
     const leagues = [
