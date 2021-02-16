@@ -1,5 +1,5 @@
 
-@media (max-width: 1010px){
+@media (max-width: 1044px){
     .gameCards{
         grid-template-columns: repeat(2,320px);
     }

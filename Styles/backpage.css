@@ -1,5 +1,5 @@
 .backpage{ 
-    background-color: rgba(255, 255, 255, 0.55);
+    background-color: rgba(255, 255, 255, 0.35);
     border: 2px solid black; 
     border-radius: 25px;
     /* stuff that is needed*/ 
@@ -14,6 +14,7 @@
 .backpage::-webkit-scrollbar { 
     display: none;  /* Safari and Chrome */
 }
+
 
 .top, .middle{ 
     display: flex; 
@@ -33,10 +34,12 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    align-items: center;
     width: 45%;
     padding-left: 5%;
     box-sizing: border-box;
 }
+
 .headline{
     width: 65%;
 }
@@ -56,8 +59,8 @@
     width: 45%;
 }
 .leader img{
-    width: 9vh;
-    height: 6vh;
+    width: 10vh;
+    height: 8vh;
     padding-bottom: 10px;
 }
 thead td { 
@@ -78,4 +81,9 @@ thead td {
 }
 .gameLeaders p , .leader p  { 
     font-size: 1.8vh;
+}
+
+.lastPlay img { 
+    height: 7vh;
+    width: 10vh;
 }
