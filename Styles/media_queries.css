@@ -10,3 +10,10 @@
         grid-template-columns: 350px;
     }
 }
+
+@media (max-width: 1560px) { 
+    .score { 
+        font-size: 2.15rem;
+    }
+
+}

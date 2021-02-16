@@ -49,6 +49,8 @@
 .backpage img{
     height: 4vh;
     width: 4vh;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 .leader{
@@ -62,6 +64,8 @@
     width: 10vh;
     height: 8vh;
     padding-bottom: 10px;
+    min-height: 80px;
+    min-width: 90px;
 }
 thead td { 
     font-weight: bold;
