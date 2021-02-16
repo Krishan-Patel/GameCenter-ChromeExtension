@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sports Tab Settings Page</title>
+    <link rel="stylesheet" href="Styles/settings.css" />
+  </head>
+  <body>
+    <h1>SPORTS TAB SETTINGS PAGE</h1>
+    <h3>Customize your New-Tab Experience</h3>
+    <form id='settings'>
+      <label for="background-url">Set your own custom background by pasting a URL</label>
+      <input type="url" id="background-url" placeholder="URL to image here" />
+      <h2>
+        Select Which of the following Leagues you would like to see on your
+        New-Tab Page
+      </h2>
+      <div class="options">
+        <div>
+            <label for="nhl">NHL</label>
+            <input type="checkbox" name="NHL" id="nhl" value="nhl"/>
+          </div>
+          <div>
+            <label for="nfl">NFL</label>
+            <input type="checkbox" name="NFL" id="nfl" value="nfl" />
+          </div>
+          <div>
+            <label for="nba">NBA</label>
+            <input type="checkbox" name="NBA" id="nba" value="nba" />
+          </div>
+          <div>
+            <label for="cfl">COLLLEGE FOOTBALL</label>
+            <input type="checkbox" name="CFL" id="cfl" value="cfl"/>
+          </div>
+          <div>
+            <label for="epl">ENGLISH PREMIER LEAGUE</label>
+            <input type="checkbox" name="EPL" id="epl"  value="epl"/>
+          </div>
+          <div>
+            <label for="ncaab">MENS COLLEGE BASKETBALL</label>
+            <input type="checkbox" name="NCAAB" id="ncaab" value="ncaab" />
+          </div>
+          <div>
+            <label for="mlb">MLB</label>
+            <input type="checkbox" name="MLB" id="mlb" value="mlb"/>
+          </div>
+      </div>
+     <div class="buttons">
+        <button id='submit'>SAVE CHANGES</button>
+        <button id='reset'>RESET TO DEFAULTS</button>
+     </div>
+    </form>
+    <script type="module" src="scripts/settings.js"></script>
+  </body>
+</html>
