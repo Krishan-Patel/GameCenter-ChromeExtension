@@ -8,6 +8,22 @@ import {
   nflSetData,
 } from "./Leagues.js";
 
+// hideUndefined() scans the entire page for images and hides any unavaliable images (unkown source) to remove broken images.
+export function hideUndefined() {
+  document.querySelectorAll("img").forEach((img) => {
+    if (
+      img.src ==
+        "chrome-extension://kaegdnmilijaliffkaeaadihicbklcmn/undefined" ||
+      img.src == "chrome-extension://kaegdnmilijaliffkaeaadihicbklcmn/"
+    ) {
+      img.style.display = "none";
+    } else {
+      img.style.display = "revert";
+    }
+  });
+}
+
+// fetchInfo(url) uses the fetch API to get info from URL and creates an array of GameCard objects corresponding to the 
 export function fetchInfo(url) {
   let promise = fetch(url)
     .then((response) => response.json())
@@ -19,16 +35,18 @@ export function fetchInfo(url) {
       events.forEach((event) => {
         try {
           let card;
-          let homeRecord, awayRecord 
-          try{ 
-            homeRecord = event.competitions[0].competitors[0].records[0].summary;
-          }catch{ 
-            homeRecord = null 
+          let homeRecord, awayRecord;
+          try {
+            homeRecord =
+              event.competitions[0].competitors[0].records[0].summary;
+          } catch {
+            homeRecord = null;
           }
-          try{ 
-            awayRecord = event.competitions[0].competitors[1].records[0].summary;
-          }catch{ 
-            awayRecord = null 
+          try {
+            awayRecord =
+              event.competitions[0].competitors[1].records[0].summary;
+          } catch {
+            awayRecord = null;
           }
           card = new scoreCard(
             event.competitions[0].competitors[0].team.name,
@@ -124,6 +142,8 @@ export function fetchInfo(url) {
   return promise;
 }
 
+// updateData(gamesArray, updatecard) updates the GameCard objects in gamesArray, if updatecard is true updates the 
+//   display with the new information as well. 
 export function updateData(gamesArray, updatecard) {
   for (let j = 0; j < gamesArray.length; j++) {
     fetch(gamesArray[j][0])
@@ -146,26 +166,40 @@ export function updateData(gamesArray, updatecard) {
             }
           }
         });
+        if (leagueArray) { 
         gamesArray[j] = leagueArray;
         chrome.storage.local.set({ gamesData: gamesArray });
+        if (updatecard) {
+          hideUndefined();
+        }
+      } else { 
+        throw Error(gamesArray[j][0])
+      }
       })
       .catch(function (error) {
-        //console.log(error)
+        console.log(error);
         // gamesArray = gamesArray.filter(league => {
         //     return league[0] != error.message
         // })
         console.log("data out of sync");
         console.log(error.message);
         fetchInfo(error.message).then((leagueArray) => {
+          if(leagueArray) { 
           gamesArray[j] = leagueArray;
           chrome.storage.local.set({ gamesData: gamesArray });
+          if (updatecard) {
+            hideUndefined();
+          }
           //location.reload();
+        }
         });
       });
   }
-  // update the storage here? 
 }
 
+
+// updateInfo(game, event, updatecard) updates the information in the ScoreCard object game based on the information in the json object event. 
+// if update card is true updates the display to reflect the updates information. 
 function updateInfo(game, event, updatecard) {
   if (event.status.type.state === "pre") {
     try {
@@ -203,10 +237,12 @@ function updateInfo(game, event, updatecard) {
         game.lastPlayText = event.competitions[0].situation.lastPlay.text;
       } catch (error) {}
     } else {
-      game.home.record =
-        event.competitions[0].competitors[0].records[0].summary;
-      game.away.record =
-        event.competitions[0].competitors[1].records[0].summary;
+      try {
+        game.home.record =
+          event.competitions[0].competitors[0].records[0].summary;
+        game.away.record =
+          event.competitions[0].competitors[1].records[0].summary;
+      } catch (error) {}
     }
   }
   if (updatecard) {
