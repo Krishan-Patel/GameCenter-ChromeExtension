@@ -173,6 +173,7 @@ export function updateData(gamesArray, updatecard) {
           hideUndefined();
         }
       } else { 
+        console.log(leagueArray)
         throw Error(gamesArray[j][0])
       }
       })

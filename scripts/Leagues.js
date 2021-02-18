@@ -28,7 +28,7 @@ export function nflSetData(card, event) {
         try {
             card.headline = event.competitions[0].situation.downDistanceText;
         } catch (error) {
-            card.headline = event.competitions[0].notes[0].headline;
+            //card.headline = event.competitions[0].notes[0].headline;
          }
     }
 
