@@ -10,34 +10,38 @@ body{
 }
 
 .main{
-    height: 100vh;
+    height: 75vh;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-around;
 }
 /* Header Styles*/ 
 header{
-    height: 10vh;
+    height: 20vh;
     min-height: 60px;
-    background-color: rgba(255, 255, 255,0);
+    padding: 0 0 0 5%;
+    margin-top: 5vh;
 }
 .bookmarks{
     height: 100%;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(6, min-content);
+    gap: inherit;
+    justify-items: center;
     align-items: center;
+    gap: 0 2.5vw; 
+
 }
 .bookmarks img, .bookmarks a{
     height: 8vh; 
-
+    max-width: 18vw;
 }
 
 /* Styles for the sports Data*/
 .sportsData{
     display: flex;
-    height: 70vh;
-    min-height: 600px;
-    margin-bottom: 5vh;
+    height: 60vh;
+    min-height: 445px;
 }
 .gameCards{
     display: grid;
@@ -47,7 +51,7 @@ header{
     overflow: scroll;
     padding:  0 1.5vh;
     box-sizing: border-box;
-    height: max(605px, calc(64vh + 65px));
+    height: max(450px, calc(48vh + 50px));
 }
 
 .gameCards::-webkit-scrollbar { 
