@@ -108,6 +108,7 @@ export function fetchInfo(url) {
             try {
               card.odds = event.competitions[0].odds[0].details;
               card.overUnder = event.competitions[0].odds[0].overUnder;
+              card.headline = event.name; 
             } catch (error) {
               console.log(error);
             } // need this try error incase odds have not been set yet
@@ -209,6 +210,7 @@ function updateInfo(game, event, updatecard) {
       game.status = event.status.type.state;
       game.details = event.competitions[0].status.type.shortDetail;
       game.date = event.date;
+      game.headline = event.name; 
     } catch {}
   } else {
     game.home.linescore = event.competitions[0].competitors[0].linescores;

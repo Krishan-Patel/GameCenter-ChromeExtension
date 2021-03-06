@@ -188,6 +188,8 @@ export class scoreCard {
             this.homeLeaderStats = document.createElement('p');
             this.awayLeaderImg = document.createElement('img');
             this.awayLeaderStats = document.createElement('p');
+            this.homeLeaderName = document.createElement('p');
+            this.awayLeaderName = document.createElement('p');
             try {
             this.homeLeaderImg.setAttribute('src', this.home.leadersImg);
             this.awayLeaderImg.setAttribute('src', this.away.leadersImg);
@@ -197,9 +199,13 @@ export class scoreCard {
             }
             this.awayLeaderStats.textContent = this.away.leadersStats;
             this.homeLeaderStats.textContent = this.home.leadersStats;
+            this.homeLeaderName.textContent = this.home.leadersName; 
+            this.awayLeaderName.textContent = this.away.leadersName;
             homeLeader.appendChild(this.homeLeaderImg);
+            homeLeader.appendChild(this.homeLeaderName);
             homeLeader.appendChild(this.homeLeaderStats);
             awayLeader.appendChild(this.awayLeaderImg);
+            awayLeader.appendChild(this.awayLeaderName);
             awayLeader.appendChild(this.awayLeaderStats);
             gameLeaders.appendChild(homeLeader);
             gameLeaders.appendChild(awayLeader);
@@ -291,9 +297,11 @@ export function loadExisting(scorecard) {
         scorecard.date)
     card.home.leadersImg = scorecard.home.leadersImg;
     card.home.leadersStats = scorecard.home.leadersStats;
+    card.home.leadersName = scorecard.home.leadersName;
     card.home.linescore = scorecard.home.linescore;
     card.away.leadersImg = scorecard.away.leadersImg;
     card.away.leadersStats = scorecard.away.leadersStats;
+    card.away.leadersName = scorecard.away.leadersName;
     card.away.linescore = scorecard.away.linescore;
     card.gameLeaders = scorecard.gameLeaders;
     card.odds = scorecard.odds;
