@@ -22,46 +22,27 @@ export class scoreCard {
 
 
         if ((this.league === 'NFL' || this.league === 'CFL') && (this.status == 'post' || this.status === 'in')) {
-            try {
-                this.passingLeader.setAttribute('src', this.gameLeaders.passLeaderImg);
+                this.passingLeader.setAttribute('src', this.gameLeaders.passLeaderImg ? this.gameLeaders.passLeaderImg : "http://");
                 this.passStats.textContent = this.gameLeaders.passLeaderTxt;
-                this.rushingLeader.setAttribute('src', this.gameLeaders.rushingLeaderImg);
+                this.rushingLeader.setAttribute('src', this.gameLeaders.rushingLeaderImg ? this.gameLeaders.rushingLeaderImg : "http://");
                 this.rushStats.textContent = this.gameLeaders.rushingLeaderTxt;
-                this.recievingLeader.setAttribute('src', this.gameLeaders.recievingLeaderImg);
+                this.recievingLeader.setAttribute('src', this.gameLeaders.recievingLeaderImg ? this.gameLeaders.recievingLeaderImg : "http://");
                 this.recievingStats.textContent = this.gameLeaders.recieveingLeaderTxt;
-            } catch { 
-                this.passingLeader.setAttribute('src',null);
-                this.rushingLeader.setAttribute('src',null);
-                this.recievingLeader.setAttribute('src',null);
-            }
-            try {
                 this.headlineText.textContent = this.headline
                 this.lastPlayP.textContent = this.lastPlayText;
-                this.lastPlayImage.src = this.lastPlayImg;    
-            } catch (error) {
-                this.lastPlayImage.src = null; 
-            }
+                this.lastPlayImage.src = this.lastPlayImg ? this.lastPlayImg : "http://";    
         }
-        else if (this.status === 'in' || this.status === 'post'){
-            try {
-                this.homeLeaderImg.src = this.home.leadersImg;
+        else if (this.status === 'in' || this.status === 'post') {
+                this.homeLeaderImg.src = this.home.leadersImg ? this.home.leadersImg : "http://";
                 this.homeLeaderStats.textContent = this.home.leadersStats;
-                this.awayLeaderImg.src = this.away.leadersImg;
+                this.homeLeaderName.textContent = this.home.leadersName; 
+                this.awayLeaderImg.src = this.away.leadersImg ? this.away.leadersImg : "http://";
                 this.awayLeaderStats.textContent = this.away.leadersStats;
-            } catch { 
-                this.homeLeaderImg.src = null; 
-                this.awayLeaderImg.src = null; 
-            }
-            try {
+                this.awayLeaderName.textContent = this.away.leadersName; 
                 this.lastPlayP.textContent = this.lastPlayText;
-                this.lastPlayImage.src = this.lastPlayImg;
+                this.lastPlayImage.src = this.lastPlayImg ? this.lastPlayImg : "http://";
                 this.headlineText.textContent = this.headline
-            } catch (error) {
-                this.lastPlayImage.src = null;
-             }
         }
-
-
     }
 
     // flip() Changes the UI by swapping the display for a particular gamecard to the backpage when a user clicks on it. 
@@ -150,7 +131,7 @@ export class scoreCard {
         const lastPlayContainer = document.createElement('div');
         lastPlayContainer.setAttribute('class', 'lastPlay');
         this.lastPlayImage = document.createElement('img');
-        this.lastPlayImage.setAttribute('src', '/');
+        this.lastPlayImage.setAttribute('src', this.lastPlayImg ? this.lastPlayImg : "http://");
         this.lastPlayP = document.createElement('p');
         lastPlayContainer.appendChild(this.lastPlayImage);
         lastPlayContainer.appendChild(this.lastPlayP);
@@ -161,15 +142,15 @@ export class scoreCard {
         if (this.league === "NFL" || this.league === 'CFL') {
             gameLeaders.setAttribute('class', 'gameLeaders');
             this.passingLeader = document.createElement('img');
-            this.passingLeader.setAttribute('src', this.gameLeaders.passLeaderImg);
+            this.passingLeader.setAttribute('src', this.gameLeaders.passLeaderImg ? this.gameLeaders.passLeaderImg : "http://");
             this.passStats = document.createElement('p')
             this.passStats.textContent = this.gameLeaders.passLeaderTxt;
             this.rushingLeader = document.createElement('img');
-            this.rushingLeader.setAttribute('src', this.gameLeaders.rushingLeaderImg);
+            this.rushingLeader.setAttribute('src', this.gameLeaders.rushingLeaderImg ? this.gameLeaders.rushingLeaderImg : "http://");
             this.rushStats = document.createElement('p');
             this.rushStats.textContent = this.gameLeaders.rushingLeaderTxt;
             this.recievingLeader = document.createElement('img');
-            this.recievingLeader.setAttribute('src', this.gameLeaders.recievingLeaderImg ? this.gameLeaders.recievingLeaderImg : '/' );
+            this.recievingLeader.setAttribute('src', this.gameLeaders.recievingLeaderImg ? this.gameLeaders.recievingLeaderImg : "http://" );
             this.recievingStats = document.createElement('p');
             this.recievingStats.textContent = this.gameLeaders.recieveingLeaderTxt;
             gameLeaders.appendChild(this.passingLeader);
@@ -190,13 +171,8 @@ export class scoreCard {
             this.awayLeaderStats = document.createElement('p');
             this.homeLeaderName = document.createElement('p');
             this.awayLeaderName = document.createElement('p');
-            try {
-            this.homeLeaderImg.setAttribute('src', this.home.leadersImg);
-            this.awayLeaderImg.setAttribute('src', this.away.leadersImg);
-            } catch {
-            this.homeLeaderImg.src = null; 
-            this.awayLeaderImg.src = null; 
-            }
+            this.homeLeaderImg.setAttribute('src', this.home.leadersImg ? this.home.leadersImg : "http://");
+            this.awayLeaderImg.setAttribute('src', this.away.leadersImg ? this.away.leadersImg : "http://");
             this.awayLeaderStats.textContent = this.away.leadersStats;
             this.homeLeaderStats.textContent = this.home.leadersStats;
             this.homeLeaderName.textContent = this.home.leadersName; 

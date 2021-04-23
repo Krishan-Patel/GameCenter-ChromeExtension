@@ -11,11 +11,8 @@ import {
 // hideUndefined() scans the entire page for images and hides any unavaliable images (unkown source) to remove broken images.
 export function hideUndefined() {
   document.querySelectorAll("img").forEach((img) => {
-    if (
-      img.src ==
-        "chrome-extension://kaegdnmilijaliffkaeaadihicbklcmn/undefined" ||
-      img.src == "chrome-extension://kaegdnmilijaliffkaeaadihicbklcmn/"
-    ) {
+    console.log(img.src);
+    if (img.src == "http:") {
       img.style.display = "none";
     } else {
       img.style.display = "revert";
