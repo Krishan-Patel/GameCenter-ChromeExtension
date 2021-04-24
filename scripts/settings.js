@@ -104,22 +104,3 @@ add_bookmark.addEventListener('click', (e) => {
 }
 })
 
-
-// https://stackoverflow.com/questions/38809797/putting-an-image-into-chrome-storage-extension
-function ImageLoader( url ){
-  var imgxhr = new XMLHttpRequest();
-      imgxhr.open( "GET", url + "?" + new Date().getTime() );
-      imgxhr.responseType = "blob";
-      imgxhr.onload = function (){
-          if ( imgxhr.status===200 ){
-              reader.readAsDataURL(imgxhr.response);
-          }
-      };
-  var reader = new FileReader();
-      reader.onloadend = function () {
-          document.getElementById( "image" ).src = reader.result;
-          chrome.storage.local.set( { Image : reader.result } );
-      };
-  imgxhr.send();
-}
-
