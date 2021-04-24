@@ -1,5 +1,5 @@
 # New-Tab-Sports-App
-Custom new tab page with live sports scores 
+Custom new tab page with live sports scores \n 
 The New Tab Sports Page Features: 
 Support for the four Major sports leagues NFL, NBA, NHL, MLB and College Basketball/Football and English Premier League 
 Automatic Background Score Refereshes 
