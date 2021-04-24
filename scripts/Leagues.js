@@ -12,10 +12,7 @@ export function nbaSetData(card, event) {
         } catch {
             card.headline = event.name; 
          }
-    } catch (error) {
-        console.log(error)
-        console.log(card.home.name)
-    }
+    } catch (error) {}
 }
 
 // function for setting specific information within a NFL and college Footbal scorecard object. 
@@ -30,7 +27,7 @@ export function nflSetData(card, event) {
         card.gameLeaders.recievingLeaderImg = event.competitions[0].leaders[2].leaders[0].athlete.headshot;
         card.gameLeaders.recieveingLeaderTxt = event.competitions[0].leaders[2].leaders[0].displayValue;
         card.gameLeaders.recieveingLeaderName = event.competitions[0].leaders[2].leaders[0].athlete.displayName;
-    }catch (error) {console.log(error)}
+    }catch (error) {}
 
         try {
             card.headline = event.competitions[0].situation.downDistanceText;
@@ -74,8 +71,7 @@ export function mlbSetData(card, event) {
         card.away.leadersImg = event.competitions[0].competitors[1].leaders[4].leaders[0].athlete.headshot;
         card.away.leadersStats = event.competitions[0].competitors[1].leaders[4].leaders[0].displayValue;
         card.away.leadersName = event.competitions[0].competitors[1].leaders[4].leaders[0].athlete.displayName;
-    } catch (error) { 
-        console.log(error) }
+    } catch (error) {}
 }
 
 // function for setting specific information within a College Basketball scorecard object. 
@@ -87,12 +83,11 @@ export function NCAABSetData(card, event) {
         card.away.leadersImg = event.competitions[0].competitors[1].leaders[0].leaders[0].athlete.headshot;
         card.away.leadersStats = event.competitions[0].competitors[1].leaders[0].leaders[0].displayValue;
         card.away.leadersName = event.competitions[0].competitors[1].leaders[0].leaders[0].athlete.displayName;
-    } catch (error) { console.log(error) }
+    } catch (error) {}
     try {
         card.headline = event.competitions[0].headlines[0].shortLinkText;
     } catch (error) { 
-        card.headline = event.name; 
-        console.log(error) 
+        card.headline = event.name;  
     }
 
 }

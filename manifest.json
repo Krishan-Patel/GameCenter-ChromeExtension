@@ -1,5 +1,5 @@
 {
-    "name": "Testing",
+    "name": "GameCenter",
     "version": "1.0",
     "description": "The Ultimate Gaming Experience",
     "permissions": ["storage","alarms"],

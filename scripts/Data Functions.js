@@ -11,7 +11,6 @@ import {
 // hideUndefined() scans the entire page for images and hides any unavaliable images (unkown source) to remove broken images.
 export function hideUndefined() {
   document.querySelectorAll("img").forEach((img) => {
-    console.log(img.src);
     if (img.src == "http:") {
       img.style.display = "none";
     } else {
@@ -107,7 +106,7 @@ export function fetchInfo(url) {
               card.overUnder = event.competitions[0].odds[0].overUnder;
               card.headline = event.name; 
             } catch (error) {
-              console.log(error);
+              //console.log(error);
             } // need this try error incase odds have not been set yet
           } else if (event.status.type.state == "in") {
             card.home.linescore =
@@ -128,13 +127,13 @@ export function fetchInfo(url) {
           card.createCard();
           leagueArray.push(card);
         } catch (error) {
-          console.log(error);
+          //console.log(error);
         }
       });
       return leagueArray;
     })
     .catch((error) => {
-      console.log(error);
+      //console.log(error);
     });
 
   return promise;
@@ -171,17 +170,17 @@ export function updateData(gamesArray, updatecard) {
           hideUndefined();
         }
       } else { 
-        console.log(leagueArray)
+        //console.log(leagueArray)
         throw Error(gamesArray[j][0])
       }
       })
       .catch(function (error) {
-        console.log(error);
+        //console.log(error);
         // gamesArray = gamesArray.filter(league => {
         //     return league[0] != error.message
         // })
-        console.log("data out of sync");
-        console.log(error.message);
+        //console.log("data out of sync");
+        //console.log(error.message);
         fetchInfo(error.message).then((leagueArray) => {
           if(leagueArray) { 
           gamesArray[j] = leagueArray;
