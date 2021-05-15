@@ -209,7 +209,6 @@ class Team {
         this.record = record;
         this.score = score;
         this.linescore = linescore;
-
     }
 
     // constructTeamDiv() uses the DOM api to create the team component of the scorecard UI. 

@@ -1,4 +1,5 @@
 let bookmarks_container = document.querySelector('.bookmarks')
+// loads in bookmark data from chrome storage sync API and dynamically adds it to the page
 window.addEventListener('load', () => { 
     chrome.storage.sync.get('bookmarks', (result) => { 
         if (result) {

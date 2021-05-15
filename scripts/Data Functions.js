@@ -107,7 +107,7 @@ export function fetchInfo(url) {
               card.headline = event.name; 
             } catch (error) {
               //console.log(error);
-            } // need this try error incase odds have not been set yet
+            }
           } else if (event.status.type.state == "in") {
             card.home.linescore =
               event.competitions[0].competitors[0].linescores;
@@ -170,17 +170,10 @@ export function updateData(gamesArray, updatecard) {
           hideUndefined();
         }
       } else { 
-        //console.log(leagueArray)
         throw Error(gamesArray[j][0])
       }
       })
       .catch(function (error) {
-        //console.log(error);
-        // gamesArray = gamesArray.filter(league => {
-        //     return league[0] != error.message
-        // })
-        //console.log("data out of sync");
-        //console.log(error.message);
         fetchInfo(error.message).then((leagueArray) => {
           if(leagueArray) { 
           gamesArray[j] = leagueArray;
