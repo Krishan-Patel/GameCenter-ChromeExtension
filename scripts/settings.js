@@ -9,12 +9,19 @@ const mlb = document.getElementById("mlb");
 const ncaab = document.getElementById("ncaab");
 const url = document.getElementById("background-url");
 
+export const leagues_arr = [
+  "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
+  "http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
+  "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+  "http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
+  "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
+  "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
+  "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
+];
 // handles the submission of the settings form and updates the settings for the user accordingly. 
 submit.addEventListener("click", (e) => {
   e.preventDefault();
-  //console.log(e);
   let leagues = [];
-  //console.log(nfl);
   if (nfl.checked) {
     leagues.push(
       "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard"
@@ -54,9 +61,7 @@ submit.addEventListener("click", (e) => {
   chrome.storage.sync.set({leagues : leagues});
   chrome.storage.local.clear();
   }
-
   if (url.value) {
-    //console.log(url.value);
     chrome.storage.sync.set({'background' : url.value})
   }
 });
@@ -65,18 +70,9 @@ submit.addEventListener("click", (e) => {
 // handles the event for when the user wants to reset to the default settings. 
 document.getElementById("reset").addEventListener("click", (e) => {
     e.preventDefault(); 
-    const leagues = [
-    "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/hockey/nhl/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
-    "http://site.api.espn.com/apis/site/v2/sports/soccer/eng.1/scoreboard",
-  ];
-    //console.log(leagues)
-    chrome.storage.sync.set({leagues : leagues});
+    chrome.storage.sync.set({leagues : leagues_arr});
     chrome.storage.local.clear(); 
+    chrome.storage.sync.set({bookmarks: []});
     chrome.storage.sync.set({'background' : "https://images.unsplash.com/photo-1523130979271-d463aac0e7e9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"})
 });
 
@@ -93,7 +89,6 @@ add_bookmark.addEventListener('click', (e) => {
   chrome.storage.sync.get('bookmarks', (result) => { 
     let bookmarks = result.bookmarks; 
     bookmarks.push(entry);
-    //console.log(bookmarks)
     chrome.storage.sync.set({bookmarks: bookmarks});
     upload.value = null; 
     bookmark_url.value = '';
