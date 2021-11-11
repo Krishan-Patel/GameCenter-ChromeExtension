@@ -50,6 +50,7 @@ window.addEventListener("load", () => {
       });
     }
   });
+  checkLeagues(gamesArray)
   update();
 });
 let id;
@@ -98,4 +99,20 @@ function loadCards(gamesArray) {
     gameCards.appendChild(game.container);
   });
   hideUndefined();
+}
+
+function checkLeagues(gamesArray) { 
+  chrome.storage.sync.get('leagues', (result) => { 
+      leagues = result.leagues; 
+      if (gamesArray.length != leagues.length) { 
+        chrome.storage.local.clear(); 
+        localtion.reload(); 
+      }
+      for (i = 0; i < leagues.length; i++) { 
+          if (gamesArray[i][0] != leagues[i]) { 
+            chrome.storage.local.clear(); 
+            location.reload(); 
+          }
+      }
+  })
 }

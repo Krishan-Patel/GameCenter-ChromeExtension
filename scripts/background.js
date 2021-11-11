@@ -1,5 +1,6 @@
 import { updateData } from "./Data Functions.js";
 import { leagues_arr } from "./settings.js"
+
 // handles the initial setup for when a user installs the extension: opens the options page for them to choose leagues and sets the default background. 
 chrome.runtime.onInstalled.addListener(function() {
     chrome.runtime.openOptionsPage(() => {
@@ -22,6 +23,5 @@ chrome.alarms.onAlarm.addListener(alarm => {
     chrome.storage.local.get('gamesData', function (result) {
         updateData(result.gamesData, false)
     })
-    var date = Date();
 })
 
