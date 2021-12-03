@@ -61,7 +61,7 @@ function update() {
     //console.log(id);
     updateData(gamesArray, true);
     let date = new Date();
-    id = setTimeout(liveRefresh, 30000);
+    id = setTimeout(liveRefresh, 5000);
   }, 5000);
 }
 window.addEventListener("blur", stopUpdates);
