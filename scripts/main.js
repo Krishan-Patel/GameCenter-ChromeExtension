@@ -103,10 +103,10 @@ function loadCards(gamesArray) {
 
 function checkLeagues(gamesArray) { 
   chrome.storage.sync.get('leagues', (result) => { 
-      leagues = result.leagues; 
+      let leagues = result.leagues; 
       if (gamesArray.length != leagues.length) { 
         chrome.storage.local.clear(); 
-        localtion.reload(); 
+        location.reload(); 
       }
       for (i = 0; i < leagues.length; i++) { 
           if (gamesArray[i][0] != leagues[i]) { 

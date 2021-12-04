@@ -1,6 +1,6 @@
 {
     "name": "GameCenter",
-    "version": "1.0",
+    "version": "1.2",
     "description": "The Ultimate Gaming Experience",
     "permissions": ["storage","alarms"],
     "options_page": "settings.html",
