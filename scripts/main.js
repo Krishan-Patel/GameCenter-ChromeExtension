@@ -108,7 +108,7 @@ function checkLeagues(gamesArray) {
         chrome.storage.local.clear(); 
         location.reload(); 
       }
-      for (i = 0; i < leagues.length; i++) { 
+      for (let i = 0; i < leagues.length; i++) { 
           if (gamesArray[i][0] != leagues[i]) { 
             chrome.storage.local.clear(); 
             location.reload(); 
