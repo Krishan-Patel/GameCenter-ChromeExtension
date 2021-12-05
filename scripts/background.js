@@ -1,14 +1,17 @@
 import { updateData } from "./Data Functions.js";
-import { leagues_arr } from "./settings.js"
 
 // handles the initial setup for when a user installs the extension: opens the options page for them to choose leagues and sets the default background. 
-chrome.runtime.onInstalled.addListener(function() {
-    chrome.runtime.openOptionsPage(() => {
-        //console.log('opened page')
-    })
-    chrome.storage.sync.set({'background' : "https://images.unsplash.com/photo-1523130979271-d463aac0e7e9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"});
-    chrome.storage.sync.set({bookmarks: []});
-    chrome.storage.sync.set({leagues : leagues_arr});
+chrome.runtime.onInstalled.addListener(function(object) {
+    console.log(object)
+    if(object.reason === 'install') {
+      chrome.storage.sync.set({'background' : "https://images.unsplash.com/photo-1523130979271-d463aac0e7e9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2550&q=80"});
+      chrome.storage.sync.set({bookmarks: []});
+      chrome.storage.sync.set({leagues : ["https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard"]});
+      chrome.tabs.create({url:chrome.extension.getURL("../settings.html")}, function (tab) { 			
+        console.log("New tab launched with local file"); 		
+      });
+    }
+    
   });
 
 // creates a chrome alarm event that fires every 30 minutes 
@@ -16,7 +19,6 @@ chrome.alarms.create("updateData", {
     when: Date.now() + 60000,
     periodInMinutes: 30,
   });
-
 
 // listens for the chrome alarm event being fired and responds by updates the cached sports data  
 chrome.alarms.onAlarm.addListener(alarm => {

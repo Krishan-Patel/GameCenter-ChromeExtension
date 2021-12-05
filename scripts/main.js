@@ -30,6 +30,7 @@ window.addEventListener("load", () => {
         }
       });
       loadCards(gamesArray);
+      checkLeagues(gamesArray)
     } else {
       let promises = [];
       let leagues = [];
@@ -49,8 +50,7 @@ window.addEventListener("load", () => {
         });
       });
     }
-  });
-  checkLeagues(gamesArray)
+  }); 
   update();
 });
 let id;
@@ -61,7 +61,7 @@ function update() {
     //console.log(id);
     updateData(gamesArray, true);
     let date = new Date();
-    id = setTimeout(liveRefresh, 5000);
+    id = setTimeout(liveRefresh, 10000);
   }, 5000);
 }
 window.addEventListener("blur", stopUpdates);
@@ -101,7 +101,7 @@ function loadCards(gamesArray) {
   hideUndefined();
 }
 
-function checkLeagues(gamesArray) { 
+function checkLeagues(gamesArray) {
   chrome.storage.sync.get('leagues', (result) => { 
       let leagues = result.leagues; 
       if (gamesArray.length != leagues.length) { 
